@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  mongo-auth:
+    image: mongo:3.3
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-auth:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+
+  redis:
+    image: redis:5.0.5-alpine3.10
+    ports:
+      - "6379:6379"
+
+  auth-service:
+    build: ./auth
+    depends_on:
+      - redis
+      - mongo-auth
+
+  gateway:
+    build: ./gateway
+    depends_on:
+      - auth-service
+    ports:
+      - "8000:8000"
+
+  web-app:
+    build: ./web-app
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - gateway
+
+volumes:
+  mongo-auth:

@@ -1,0 +1,19 @@
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    account-service:
+      path: /uaa/**
+      url: http://auth-service:8001
+      stripPrefix: false
+      sensitiveHeaders:
+
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+server:
+  port: 8000
