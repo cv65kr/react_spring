@@ -6,15 +6,16 @@ This is simple React App with Spring Backed.
 
 ### Screenshots
 
+Homepage
 ![Screenshot](./docs/screenshots/2.png)
 
-
+Sign In
 ![Screenshot](./docs/screenshots/3.png)
 
 
 ![Screenshot](./docs/screenshots/4.png)
 
-
+Sign up
 ![Screenshot](./docs/screenshots/5.png)
 
 ## Features
